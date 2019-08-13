@@ -10,5 +10,5 @@ module.exports = (targets) => {
     }
 }
 
-function start() {
+function start(targets, interval, log) {
 }

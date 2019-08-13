@@ -37,11 +37,11 @@ targets.forEach((t) => {
 });
 console.log("\nPress Ctrl+C to exit.");
 
-require('./pinger')(targets, argv.log || './log.log').start();
+require('./pinger')(targets, argv.interval, argv.log).start();
 
 function help() {
     console.log("Usage:");
-    console.log(` node ${process.argv[1]} --config <file> [--interval <ms>]`);
+    console.log(` node ${process.argv[1]} --config <file> [--interval <ms>] [--log <log>]`);
     console.log("");
     console.log("See config.json for example config file format.");
 }

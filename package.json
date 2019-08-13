@@ -1,0 +1,19 @@
+{
+  "name": "pingdomclone",
+  "version": "1.0.0",
+  "description": "A small Pingdom clone for website monitoring",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "author": "Arto Vuori",
+  "license": "WTFPL",
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}

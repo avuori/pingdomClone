@@ -1,0 +1,16 @@
+{
+    "targets": [
+        {
+            "url": "https://usetrace.com/",
+            "maxDelayMS": 200,
+            "matchString": "Usetrace",
+            "checkIntervalMS": 10000
+        },
+        {
+            "url": "https://f-secure.com/",
+            "maxDelayMS": 500,
+            "matchString": "F-Secure",
+            "checkIntervalMS": 15000
+        }
+    ]
+}

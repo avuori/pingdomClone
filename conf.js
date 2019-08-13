@@ -17,9 +17,9 @@ function read(config) {
 
     let requiredFields = [
         'url',
-        'maxDelayMS',
+        'maxResponseTime',
         'matchString',
-        'checkIntervalMS',
+        'interval',
     ];
 
     targets.forEach((t, i) => {

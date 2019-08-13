@@ -15,15 +15,15 @@ If you define --interval, it overrides the specific intervals defined in the con
     "targets": [
         {
             "url": "https://google.com/",
-            "maxDelayMS": 200,
+            "maxResponseTime": 200,
             "matchString": "Google",
-            "checkIntervalMS": 10000
+            "interval": 10000
         },
         {
             "url": "https://f-secure.com/",
-            "maxDelayMS": 500,
+            "maxResponseTime": 500,
             "matchString": "F-Secure",
-            "checkIntervalMS": 15000
+            "interval": 15000
         }
     ]
 }

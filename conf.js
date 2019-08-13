@@ -35,4 +35,5 @@ function read(config) {
 }
 
 function validate(target) {
+    // match string empty OK?
 }

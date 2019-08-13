@@ -28,3 +28,9 @@ If you define --interval, it overrides the specific intervals defined in the con
     ]
 }
 ```
+### Parameters
+
+* url — Target web address to monitor
+* maxResponseTime — Maximum web request time in milliseconds allowed before triggering an alert
+* matchString — String that must be found from the response body
+* interval — Time interval between each request in milliseconds

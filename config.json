@@ -1,9 +1,9 @@
 {
     "targets": [
         {
-            "url": "https://usetrace.com/",
+            "url": "https://google.com/",
             "maxDelayMS": 200,
-            "matchString": "Usetrace",
+            "matchString": "Google",
             "checkIntervalMS": 10000
         },
         {

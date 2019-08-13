@@ -16,7 +16,7 @@ If you define --interval, it overrides the specific intervals defined in the con
         {
             "url": "https://google.com/",
             "maxDelayMS": 200,
-            "matchString": "Usetrace",
+            "matchString": "Google",
             "checkIntervalMS": 10000
         },
         {

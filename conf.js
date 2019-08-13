@@ -23,12 +23,10 @@ function read(config) {
     ];
 
     targets.forEach((t, i) => {
-        /*
-        if (!requiredFields.every(field) => t.hasOwnProperty(field)) {
-            throw `The ${i+1}th config item is missing some of the required fields (${requiredFields.join(", ")}).`;
+        if (!requiredFields.every((field) => t.hasOwnProperty(field))) {
+            throw `The config item ${i+1} is missing some of the required fields (${requiredFields.join(", ")}).`;
         }
         validate(t);
-        */
     });
 
     return targets;

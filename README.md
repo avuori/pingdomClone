@@ -55,7 +55,7 @@ A target object defines a website URL to monitor.
 
 ### Backends
 
-A backend object defines which backends are receiving monitorint events. You can define a new backend simply by defining a new module under 'backend' directory, as long as it's only interface out is a function that takes the backend configuration object as its parameter and returns an instance of EventEmitter. The EventEmitter interface is a function that takes 'data' as argument, and the data has the following information: status (alert|ok), datetime, url, description.
+A backend object defines which backends are receiving monitoring events. You can define a new backend simply by defining a new module under the 'backend' directory, as long as its only interface out is a function that takes the backend configuration object as a parameter and returns an instance of EventEmitter. The EventEmitter handlers are 'ok' and 'alert' and they both are functions taking 'data' as argument, and the data has the following fields: status (alert|ok), datetime, url, description.
 
 #### Console backend
 

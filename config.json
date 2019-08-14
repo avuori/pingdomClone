@@ -20,13 +20,6 @@
         {
             "name": "logfile",
             "file": "/tmp/pingdomClone.log"
-        },
-        {
-            "name": "twilio",
-            "phone": "+1000000000",
-            "accountSid": "",
-            "authToken": "",
-            "callerId": ""
         }
     ]
 }

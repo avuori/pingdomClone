@@ -15,13 +15,13 @@ If you define --interval, it overrides the specific intervals defined in the con
     "targets": [
         {
             "url": "https://google.com/",
-            "maxResponseTime": 200,
+            "maxLoadTime": 5000,
             "matchString": "Google",
             "interval": 10000
         },
         {
             "url": "https://f-secure.com/",
-            "maxResponseTime": 500,
+            "maxLoadTime": 5000,
             "matchString": "F-Secure",
             "interval": 15000
         }
@@ -31,6 +31,6 @@ If you define --interval, it overrides the specific intervals defined in the con
 ### Parameters
 
 * url — Target web address to monitor
-* maxResponseTime — Maximum web request time in milliseconds allowed before triggering an alert
+* maxLoadTime — Maximum web page load time in milliseconds allowed before triggering an alert
 * matchString — String that must be found from the response body
 * interval — Time interval between each request in milliseconds

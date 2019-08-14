@@ -1,35 +1,33 @@
 module.exports.read = read;
 module.exports.validate = validate; // Expose for testing
 
-function read(config) {
-    let targets;
+function read(configJson) {
+    let config;
     try {
-        targets = JSON.parse(config);
+        config = JSON.parse(configJson);
     } catch (err) {
         throw new Error("Parse error Check the syntax.");
     }
 
-    if (!Array.isArray(targets.targets)) {
+    if (!Array.isArray(config.targets)) {
         throw new Error("Check the config for correctness. A toplevel targets object seems to be missing.");
     }
 
-    targets = targets.targets;
-
     let requiredFields = [
         'url',
-        'maxResponseTime',
+        'maxLoadTime',
         'matchString',
         'interval',
     ];
 
-    targets.forEach((t, i) => {
+    config.targets.forEach((t, i) => {
         if (!requiredFields.every((field) => t.hasOwnProperty(field))) {
             throw `The config item ${i+1} is missing some of the required fields (${requiredFields.join(", ")}).`;
         }
         validate(t);
     });
 
-    return targets;
+    return config;
 }
 
 function validate(target) {

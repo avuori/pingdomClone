@@ -8,36 +8,55 @@ if (!argv.config || !argv.config.length) {
     process.exit(0);
 }
 
-var config;
+var configJson;
 try {
-    config = fs.readFileSync(argv.config);
+    configJson = fs.readFileSync(argv.config);
 } catch (err) {
     console.log("Could not read config file: " + err);
     process.exit(1);
 }
 
 // Hurray, we have a config.
-var targets;
+var config;
 try {
-    targets = conf.read(config);
+    config = conf.read(configJson);
 } catch (err) {
     console.log("Invalid config: " + err);
     process.exit(1);
 }
 
-if (!targets.length) {
+if (!config.targets.length) {
     console.log("Nothing to monitor.");
     process.exit(0);
 }
 
+if (!config.backends.length) {
+    console.log("You must define at least one backend.");
+    process.exit(0);
+}
+
+// Init backends
+var backends = config.backends.map((backend) => {
+    let backendDir = './backend/';
+    try {
+        if (!fs.existsSync(backendDir + backend.name + ".js")) {
+            throw "Invalid backend: " + backend.name;
+        }
+        return require(backendDir + backend.name)(backend);
+    } catch (err) {
+        console.log("Error setting up backends: " + err);
+        throw err;
+    }
+});
+
 // Valid config: start monitoring.
-console.log(`Starting to monitor ${targets.length} targets.`);
-targets.forEach((t) => {
-    console.log(` ${t.url}, interval ${t.checkIntervalMS}ms, matching "${t.matchString}" with maxDelay ${t.maxDelayMS}ms`);
+console.log(`Starting to monitor ${config.targets.length} targets.`);
+config.targets.forEach((t) => {
+    console.log(` ${t.url}, interval ${t.interval}ms, matching "${t.matchString}" with maxLoadTime ${t.maxLoadTime}ms`);
 });
 console.log("\nPress Ctrl+C to exit.");
 
-require('./pinger')(targets, argv.interval, argv.log).start();
+require('./pinger')().start(config.targets, argv.interval, backends);
 
 function help() {
     console.log("Usage:");

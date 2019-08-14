@@ -2,15 +2,31 @@
     "targets": [
         {
             "url": "https://google.com/",
-            "maxResponseTime": 200,
+            "maxLoadTime": 5000,
             "matchString": "Google",
             "interval": 10000
         },
         {
             "url": "https://f-secure.com/",
-            "maxResponseTime": 500,
+            "maxLoadTime": 5000,
             "matchString": "F-Secure",
             "interval": 15000
+        }
+    ],
+    "backends": [
+        {
+            "name": "console"
+        },
+        {
+            "name": "logfile",
+            "file": "/tmp/pingdomClone.log"
+        },
+        {
+            "name": "twilio",
+            "phone": "+1000000000",
+            "accountSid": "",
+            "authToken": "",
+            "callerId": ""
         }
     ]
 }

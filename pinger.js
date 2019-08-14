@@ -4,28 +4,44 @@
 
 var rp = require('request-promise');
 
-module.exports = (targets) => {
+module.exports = () => {
     return {
-        start: start.bind(null, targets)
+        start: start
     }
 }
 
-function start(targets, interval, log) {
+function start(targets, interval, backends) {
+    // The emit function passes events to all backend handlers
+    let emit = (status, url, description) => {
+        backends.forEach((backend) => {
+            let datetime = new Date().toLocaleString();
+            backend.emit(status, {
+                datetime: datetime,
+                status: status,
+                url: url,
+                description: description
+            });
+        });
+    }
     targets.forEach((t) => {
         Promise.resolve().then(function resolver() {
             let hrstart = process.hrtime();
             return rp(t.url).then((body) => {
                 let hrend = process.hrtime(hrstart);
-                console.log(t.url + ": " + hrend[0] + ":" + (hrend[1] / 1000000));
-                // Check the request response contains the given string.
-                if (body.indexOf(t.matchString) === -1) {
-                    console.log(t.url + "does not contain " + t.matchString);
+                let durationMs = hrend[0] * 1000 + (hrend[1] / 1000000);
+                if (durationMs > t.maxLoadTime) {
+                    emit('alert', t.url, `Maximum load time exceeded: ${durationMs}ms.`);
+                    
+                } else if (body.indexOf(t.matchString) === -1) {
+                    emit('alert', t.url, `Request response does not contain string "${t.matchString}". ${durationMs}.`);
+                } else {
+                    emit('ok', t.url, `${durationMs}ms.`);
                 }
             }).then(() => {
                 setTimeout(resolver, t.interval);
             }).catch((err) => {
-                console.log(t.url + ": " + err);
                 setTimeout(resolver, t.interval);
+                emit('alert', t.url, `Request failed: ${err}`);
             })
         });
     });

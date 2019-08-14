@@ -1,12 +1,2 @@
-Loop
-Logging
-Measuring
-
-Decouple reporting from pinging. Allows distributed architecture.
-
-Optional: Vue frontend
-
 Add comments:
  - want to prevent false positives, so good to have some resilience, e.g. how long downtime is triggering an alert.
-
-Document backend api

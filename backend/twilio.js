@@ -25,7 +25,6 @@ module.exports = (config) => {
                 pass: config.authToken
             }
         };
-        console.log(opts);
         rp(opts)
             .then((parsedBody) => {
                 // OK

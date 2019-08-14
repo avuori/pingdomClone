@@ -68,7 +68,7 @@ Writes results to console.
 Writes results to a local logfile.
 
 * name — logfile
-* file — Path to the log file
+* file — Path to the logfile
 
 #### Twilio backend
 

@@ -41,12 +41,11 @@ class Pinger extends EventEmitter {
                     } else {
                         that._emit('ok', t.url, `${durationMs}ms.`);
                     }
-                }).then(() => {
-                    setTimeout(resolver, interval || t.interval);
                 }).catch((err) => {
-                    setTimeout(resolver, interval || t.interval);
                     that._emit('alert', t.url, `Request failed: ${err}`);
-                })
+                }).finally(() => {
+                    setTimeout(resolver, interval || t.interval);
+                });
             });
         });
     }

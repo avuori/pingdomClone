@@ -38,9 +38,9 @@ function start(targets, interval, backends) {
                     emit('ok', t.url, `${durationMs}ms.`);
                 }
             }).then(() => {
-                setTimeout(resolver, t.interval);
+                setTimeout(resolver, interval || t.interval);
             }).catch((err) => {
-                setTimeout(resolver, t.interval);
+                setTimeout(resolver, interval || t.interval);
                 emit('alert', t.url, `Request failed: ${err}`);
             })
         });

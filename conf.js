@@ -18,18 +18,39 @@ function read(configJson) {
         'maxLoadTime',
         'matchString',
         'interval',
+        'timeout',
     ];
 
     config.targets.forEach((t, i) => {
         if (!requiredFields.every((field) => t.hasOwnProperty(field))) {
             throw `The config item ${i+1} is missing some of the required fields (${requiredFields.join(", ")}).`;
         }
-        validate(t);
+        try {
+            validate(t);
+        } catch (err) {
+            throw "Config error: " + err;
+        }
     });
 
     return config;
 }
 
+function validatePositiveNumber(name, target) {
+    if (typeof target[name] != 'number' || target[name] < 0) {
+        throw `target ${target.url} — ${name} must be a positive number.`;
+    }
+}
+
 function validate(target) {
-    // match string empty OK?
+    if (typeof target.url != 'string' || !/^https?:/.test(target.url)) {
+        throw `target ${target.url} — check if this is a valid URL.`;
+    }
+
+    validatePositiveNumber("maxLoadTime", target);
+    validatePositiveNumber("interval", target);
+    validatePositiveNumber("timeout", target);
+
+    if (typeof target.matchString != 'string') {
+        throw `target ${target.url} — matchString type must be a string.`;
+    }
 }

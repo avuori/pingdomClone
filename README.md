@@ -2,9 +2,13 @@
 
 A small Pingdom clone for website monitoring.
 
+## Installation
+
+npm install
+
 ## Usage
 
-node index.js --config \<config\> [--interval \<ms\>] [--log \<log\>]
+node index.js --config \<config\> [--interval \<ms\>]
 
 If you define --interval, it overrides the specific intervals defined in the configuration file.
 

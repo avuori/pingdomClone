@@ -67,7 +67,7 @@ pinger.start(config.targets, argv.interval);
 
 function help() {
     console.log("Usage:");
-    console.log(` node ${process.argv[1]} --config <file> [--interval <ms>] [--log <log>]`);
+    console.log(` node ${process.argv[1]} --config <file> [--interval <ms>]`);
     console.log("");
     console.log("See config.json for example config file format.");
 }

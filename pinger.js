@@ -26,7 +26,12 @@ function start(targets, interval, backends) {
     targets.forEach((t) => {
         Promise.resolve().then(function resolver() {
             let hrstart = process.hrtime();
-            return rp(t.url).then((body) => {
+            let opts = {
+                method: 'GET',
+                uri: t.url,
+                timeout: t.timeout
+            }
+            return rp(opts).then((body) => {
                 let hrend = process.hrtime(hrstart);
                 let durationMs = hrend[0] * 1000 + (hrend[1] / 1000000);
                 if (durationMs > t.maxLoadTime) {

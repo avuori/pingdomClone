@@ -17,13 +17,15 @@ If you define --interval, it overrides the specific intervals defined in the con
             "url": "https://google.com/",
             "maxLoadTime": 5000,
             "matchString": "Google",
-            "interval": 10000
+            "interval": 10000,
+            "timeout": 10000
         },
         {
             "url": "https://f-secure.com/",
             "maxLoadTime": 5000,
             "matchString": "F-Secure",
-            "interval": 15000
+            "interval": 15000,
+            "timeout": 10000
         }
     ],
     "backends": [
@@ -52,6 +54,7 @@ A target object defines a website URL to monitor.
 * maxLoadTime — Maximum web page load time in milliseconds allowed before triggering an alert
 * matchString — String that must be found from the response body
 * interval — Time interval between each request in milliseconds
+* timeout — Controls read timeout and connection timeout
 
 ### Backends
 

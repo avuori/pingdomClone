@@ -13,8 +13,8 @@ module.exports = () => {
 function start(targets, interval, backends) {
     // The emit function passes events to all backend handlers
     let emit = (status, url, description) => {
+        let datetime = new Date().toLocaleString();
         backends.forEach((backend) => {
-            let datetime = new Date().toLocaleString();
             backend.emit(status, {
                 datetime: datetime,
                 status: status,

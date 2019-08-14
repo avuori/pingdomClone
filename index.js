@@ -56,7 +56,14 @@ config.targets.forEach((t) => {
 });
 console.log("\nPress Ctrl+C to exit.");
 
-require('./pinger')().start(config.targets, argv.interval, backends);
+var pinger = require('./pinger')();
+
+// Wire pinger to backends
+backends.forEach((backend) => {
+    pinger.on('ok', backend.emit.bind(backend, 'ok'));
+    pinger.on('alert', backend.emit.bind(backend, 'alert'));
+});
+pinger.start(config.targets, argv.interval);
 
 function help() {
     console.log("Usage:");

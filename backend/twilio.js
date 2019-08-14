@@ -3,9 +3,8 @@
  *
  * curl -fSs -u "$ACCOUNTSID:$AUTHTOKEN" -d "From=$CALLERID" -d "To=$PHONE" -d "Body=$MSG" "https://api.twilio.com/2010-04-01/Accounts/$ACCOUNTSID/SMS/Messages"
  */
+var EventEmitter = require('events');
 var rp = require('request-promise');
-
-EventEmitter = require('events');
 
 module.exports = (config) => {
 

@@ -2,7 +2,7 @@
  * Console logger backend.
  */
 
-EventEmitter = require('events');
+var EventEmitter = require('events');
 
 module.exports = (config) => {
     const emitter = new EventEmitter();

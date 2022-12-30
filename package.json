@@ -9,7 +9,7 @@
   "author": "Arto Vuori",
   "license": "WTFPL",
   "devDependencies": {
-    "mocha": "^6.2.0"
+    "mocha": "^10.2.0"
   },
   "dependencies": {
     "minimist": "^1.2.0",
